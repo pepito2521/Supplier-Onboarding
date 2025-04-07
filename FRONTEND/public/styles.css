@@ -1,0 +1,151 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+  text-align: center;
+}
+
+/* Contenedor del menú principal */
+.menu-container {
+  background: white;
+  padding: 20px;
+  width: 90dvw;
+  margin: 50px auto;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+/* Contenedor del forms */
+.form-container {
+  background: white;
+  padding: 20px;
+  width: 80dvw;
+  margin: 50px auto;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+/* Botones */
+.btn {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 10px 20px;
+  background-color: #007BFF;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #0056b3;
+}
+
+/* Formulario */
+form {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+label {
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+input {
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Botón de regreso */
+.back-btn {
+  background-color: #6c757d;
+}
+
+.back-btn:hover {
+  background-color: #5a6268;
+}
+
+.footer{
+  background-color:rgb(255, 0, 191);
+}
+
+.navbar {
+  height: 56px;
+}
+
+
+.header-con-fondo {
+  position: relative;
+  height: calc(100vh - 56px);
+  background-image: url("Assets/background1.jpg");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.header-con-fondo::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2); /* <-- Cambiá este valor para más/menos transparencia */
+  z-index: 1;
+}
+
+.header-con-fondo .container {
+  position: relative;
+  z-index: 2; /* El contenido aparece por encima del fondo */
+  color: white;
+  text-align: center;
+}
+
+.btn-transparente {
+  background-color: transparent;
+  border: transparent;
+  color: white;
+  width: 80px;
+  height: 120px;
+  font-size: 1rem;
+  border-radius: 0.5rem;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+}
+
+.btn-transparente:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #f8f9fa;
+  border-color: #f8f9fa;
+}
+
+.centrado-pantalla {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navbar.bg-transparent {
+  background-color: rgba(255, 255, 255, 0) !important;
+  box-shadow: none !important;
+}
+
+.navbar {
+transition: all 0.5s ;
+
+}

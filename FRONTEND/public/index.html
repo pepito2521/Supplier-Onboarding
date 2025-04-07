@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú Principal</title>
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+  <!-- Navbar-->
+  <nav class="navbar navbar-expand-lg shadow-sm bg-white shadow-sm fixed-top bg-transparent">
+    <div class="container">
+        <img src="Assets/Logo.png" alt="Logo Baya Casal" class="me-2" style="height: 40px; width: auto;">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="menu">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link active" href="#">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Formulario</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Contacto</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <header class="header-con-fondo" style="height: 100vh;">
+    <div class="container text-center">
+      <h1 class="display-4">Bienvenidos</h1>    
+      <p class="lead">Completa el formulario y forma parte de la cartera de proveedores de Baya Casal</p>
+      
+      <a href="#Completarform" class="btn-transparente">
+        <svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" fill="currentColor" class="bi bi-arrow-down" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1"/>
+        </svg>
+    </a>
+    </div>
+  </header>
+
+  <!-- Sección de Completar formulario -->
+  <section id="Completarform" class="py-5">
+    <div class="menu-container">
+      <h2 class="text-center mb-4">Formulario de Proveedores</h2>
+
+      <div class="form-container">
+        <form action="#" method="POST">
+            <label for="name">Nombre:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="phone">Teléfono:</label>
+            <input type="tel" id="phone" name="phone" required>
+
+            <label for="email">Correo Electrónico:</label>
+            <input type="email" id="email" name="email" required>
+
+            <button type="submit" class="btn">Enviar</button>
+        </form>
+    </div>
+
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-white text-center py-4">
+    <div class="container">
+      <p class="mb-0">© 2025 MiSitio - Todos los derechos reservados</p>
+    </div>
+  </footer>
+
+    <script src="bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+
+</body>
+
+</html>
