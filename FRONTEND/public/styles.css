@@ -83,7 +83,7 @@ input {
 .header-con-fondo {
   position: relative;
   height: calc(100vh - 56px);
-  background-image: url("Assets/background1.jpg");
+  background-image: url("background1.jpg");
   background-size: cover;
   background-position: center;
   display: flex;
