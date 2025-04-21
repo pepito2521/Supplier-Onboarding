@@ -1,21 +1,16 @@
-require("dotenv").config(); // Carga las variables de .env
+require("dotenv").config();
+const { Pool } = require("pg");
 
-const mysql = require("mysql2");
-
-const connection = mysql.createConnection({
-    host: process.env.DB_HOST,
-    port: process.env.DB_PORT,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME
+// Conexión a Supabase (asegurate de que DATABASE_URL esté en Render)
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false
+  }
 });
 
-connection.connect((err) => {
-    if (err) {
-        console.error("Error conectando a MySQL:", err);
-        return;
-    }
-    console.log("✅ Conectado a MySQL");
-});
+pool.connect()
+  .then(() => console.log("✅ Conectado a Supabase"))
+  .catch(err => console.error("Error conectando a Supabase:", err));
 
-module.exports = connection;
+module.exports = pool;

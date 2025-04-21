@@ -23,15 +23,16 @@ app.post("/guardar", (req, res) => {
         return res.status(400).json({ error: "Todos los campos son obligatorios" });
     }
 
-    const sql = "INSERT INTO usuarios (nombre, telefono, email) VALUES (?, ?, ?)";
-    db.query(sql, [nombre, telefono, email], (err, result) => {
-        if (err) {
+    const sql = "INSERT INTO usuarios (nombre, telefono, email) VALUES ($1, $2, $3) RETURNING id";
+    db.query(sql, [nombre, telefono, email])
+        .then(result => {
+            res.status(201).json({ message: "Datos guardados correctamente", id: result.rows[0].id });
+        })
+        .catch(err => {
             console.error("Error al insertar datos:", err);
-            return res.status(500).json({ error: "Error al guardar en la base de datos" });
-        }
-        res.status(201).json({ message: "Datos guardados correctamente", id: result.insertId });
-    });
-});
+            res.status(500).json({ error: "Error al guardar en la base de datos" });
+        });
+}); // ← cerramos correctamente la ruta
 
 // Iniciar el servidor
 app.listen(PORT, () => {
