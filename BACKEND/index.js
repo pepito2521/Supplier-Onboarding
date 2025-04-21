@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
-const db = require("./db");
+const db = require("./db");  // Asegurate que esté importando correctamente tu db.js
 const path = require("path");
 
 const app = express();
@@ -23,8 +23,10 @@ app.post("/guardar", (req, res) => {
         return res.status(400).json({ error: "Todos los campos son obligatorios" });
     }
 
+    // Consulta para insertar datos en la base de datos (usando parámetros de PostgreSQL)
     const sql = "INSERT INTO usuarios (nombre, telefono, email) VALUES ($1, $2, $3) RETURNING id";
-    db.query(sql, [nombre, telefono, email])
+
+    db.query(sql, [nombre, telefono, email])  // db es tu pool de conexión de Supabase
         .then(result => {
             res.status(201).json({ message: "Datos guardados correctamente", id: result.rows[0].id });
         })
@@ -32,7 +34,7 @@ app.post("/guardar", (req, res) => {
             console.error("Error al insertar datos:", err);
             res.status(500).json({ error: "Error al guardar en la base de datos" });
         });
-}); // ← cerramos correctamente la ruta
+});
 
 // Iniciar el servidor
 app.listen(PORT, () => {
