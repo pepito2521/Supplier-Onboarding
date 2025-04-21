@@ -24,6 +24,8 @@ body {
   margin: 50px auto;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
+  position: relative; /* 👈 esto lo hace funcionar con z-index */
+  z-index: 2;          /* 👈 lo pone por encima del fondo */
 }
 
 /* Botones */
