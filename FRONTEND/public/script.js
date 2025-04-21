@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const datos = { nombre, telefono, email };
 
-        fetch("http://localhost:5000/guardar", {
+        fetch("/guardar", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(datos),
