@@ -24,7 +24,7 @@ app.post("/guardar", (req, res) => {
     }
 
     // Consulta para insertar datos en la base de datos (usando parámetros de PostgreSQL)
-    const sql = "INSERT INTO Suppliers (nombre, telefono, email) VALUES ($1, $2, $3) RETURNING id";
+    const sql = 'INSERT INTO "Suppliers" (nombre, telefono, email) VALUES ($1, $2, $3) RETURNING id';
 
     db.query(sql, [nombre, telefono, email])  // db es tu pool de conexión de Supabase
         .then(result => {
