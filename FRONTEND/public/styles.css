@@ -120,6 +120,8 @@ input {
 }
 
 
+/* FONDO DE PANTALLA PAGINA PRINCIPAL*/
+
 .header-con-fondo {
   position: relative;
   height: calc(100vh - 56px);
