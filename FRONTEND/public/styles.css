@@ -219,6 +219,12 @@ html {
   scroll-behavior: smooth;
 }
 
+.logo-navbar {
+  max-height: 40px;
+  width: auto;
+}
+
+
 /* MEDIA QUERY PARA ADAPTAR LA PAGINA A CELULARES O TABLETS */
 
 @media (max-width: 768px) {
@@ -252,4 +258,8 @@ html {
   .flecha-svg {
     bottom: 100px; /* sube la flecha para que no quede tan baja */
   }
+    
+  .logo-navbar {
+      max-height: 30px;
+    }
 }
