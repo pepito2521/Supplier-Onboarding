@@ -222,6 +222,14 @@ html {
 /* MEDIA QUERY PARA ADAPTAR LA PAGINA A CELULARES O TABLETS */
 
 @media (max-width: 768px) {
+
+  .header-con-fondo {
+    background-size: cover;
+    background-position: center top;
+    padding-top: 150px; /* opcional: baja un poco el texto si hace falta */
+    height: auto; /* ajusta la altura automáticamente según el contenido */
+  }
+
   .titulo-formal {
     font-size: 2rem; /* más chico en celular */
   }
