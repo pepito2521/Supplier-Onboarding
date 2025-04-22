@@ -10,7 +10,7 @@ body {
 .menu-container {
   background: white;
   padding: 20px;
-  width: 90dvw;
+  width: 90%;
   margin: 50px auto;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
@@ -20,7 +20,8 @@ body {
 .form-container {
   background: white;
   padding: 20px;
-  width: 80dvw;
+  width: 95%;
+  max-width: 600px;
   margin: 50px auto;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
@@ -216,4 +217,31 @@ transition: all 0.5s ;
 
 html {
   scroll-behavior: smooth;
+}
+
+/* MEDIA QUERY PARA ADAPTAR LA PAGINA A CELULARES O TABLETS */
+
+@media (max-width: 768px) {
+  .titulo-formal {
+    font-size: 2rem; /* más chico en celular */
+  }
+
+  .subtitulo-formal {
+    font-size: 1rem;
+    white-space: normal; /* permite que se acomode a varias líneas */
+  }
+
+  .form-container,
+  .menu-container {
+    width: 95%; /* ocupa casi todo el ancho disponible */
+    padding: 10px;
+  }
+
+  .btn {
+    width: 100%; /* botones más fáciles de tocar */
+  }
+
+  .flecha-svg {
+    bottom: 100px; /* sube la flecha para que no quede tan baja */
+  }
 }
