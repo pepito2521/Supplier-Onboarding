@@ -1,42 +1,79 @@
 const express = require("express");
 const cors = require("cors");
-const bodyParser = require("body-parser");
-const db = require("./db");  // Asegurate que esté importando correctamente tu db.js
+const multer = require("multer");
 const path = require("path");
+const db = require("./db");
+const supabase = require("./supabase");
+require("dotenv").config();
 
 const app = express();
 const PORT = 5000;
 
-// Middleware
 app.use(cors());
-app.use(bodyParser.json());
+app.use(express.json());
+app.use(express.static(path.join(__dirname, "..", "FRONTEND", "public")));
 
-// Servir archivos estáticos desde la carpeta 'public'
-const publicPath = path.join(__dirname, "..", "FRONTEND", "public");
-app.use(express.static(publicPath));
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage });
 
-// Ruta para recibir los datos del formulario
-app.post("/guardar", (req, res) => {
-    const { nombre, telefono, email } = req.body;
+// Esta ruta acepta archivos y datos del formulario
+app.post("/guardar", upload.fields([
+  { name: "afip" }, 
+  { name: "iibb" }, 
+  { name: "cm05" }, 
+  { name: "comprobante" }
+]), async (req, res) => {
+  try {
+    const data = req.body;
+    const files = req.files;
 
-    if (!nombre || !telefono || !email) {
-        return res.status(400).json({ error: "Todos los campos son obligatorios" });
-    }
-
-    // Consulta para insertar datos en la base de datos (usando parámetros de PostgreSQL)
-    const sql = 'INSERT INTO "Suppliers" ("NOMBRE", "TELEFONO", "CORREO") VALUES ($1, $2, $3) RETURNING id';
-
-    db.query(sql, [nombre, telefono, email])  // db es tu pool de conexión de Supabase
-        .then(result => {
-            res.status(201).json({ message: "Datos guardados correctamente", id: result.rows[0].id });
-        })
-        .catch(err => {
-            console.error("Error al insertar datos:", err);
-            res.status(500).json({ error: "Error al guardar en la base de datos" });
+    // Función para subir un archivo a Supabase y devolver la URL
+    const subirArchivo = async (archivo, nombreDestino) => {
+      const { data: uploadData, error } = await supabase.storage
+        .from("supplierdocs")
+        .upload(`${Date.now()}_${nombreDestino}`, archivo.buffer, {
+          contentType: archivo.mimetype,
         });
+      if (error) throw error;
+
+      const { data: publicURL } = supabase.storage
+        .from("supplierdocs")
+        .getPublicUrl(uploadData.path);
+
+      return publicURL.publicUrl;
+    };
+
+    // Subimos cada archivo si existe
+    const afipUrl = files.afip ? await subirArchivo(files.afip[0], "afip") : null;
+    const iibbUrl = files.iibb ? await subirArchivo(files.iibb[0], "iibb") : null;
+    const cm05Url = files.cm05 ? await subirArchivo(files.cm05[0], "cm05") : null;
+    const comprobanteUrl = files.comprobante ? await subirArchivo(files.comprobante[0], "comprobante") : null;
+
+    // Insertar en Supabase
+    const sql = `
+      INSERT INTO "Suppliers" (
+        "NOMBRE", "TELEFONO", "CORREO", "RAZON_SOCIAL", "CUIT", "DIRECCION_FISCAL", "ACTIVIDAD",
+        "AFIP", "IIBB", "CM05", "BANCO", "CBU", "CUENTA", "MONEDA", "COMPROBANTE", "CODIGO_CONDUCTA"
+      )
+      VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16)
+      RETURNING id
+    `;
+
+    const values = [
+      data.name, data.phone, data.email, data.razon_social, data.cuit, data.direccion_fiscal,
+      data.actividad, afipUrl, iibbUrl, cm05Url, data.banco, data.cbu, data.cuenta, data.moneda,
+      comprobanteUrl, data.codigo
+    ];
+
+    const result = await db.query(sql, values);
+    res.status(201).json({ message: "Formulario guardado", id: result.rows[0].id });
+
+  } catch (error) {
+    console.error("Error en /guardar:", error);
+    res.status(500).json({ error: "Error al procesar el formulario" });
+  }
 });
 
-// Iniciar el servidor
 app.listen(PORT, () => {
-    console.log(`Servidor corriendo en http://localhost:${PORT} 🚀`);
+  console.log(`Servidor corriendo en http://localhost:${PORT}`);
 });
