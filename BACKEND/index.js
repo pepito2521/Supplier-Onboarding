@@ -51,19 +51,20 @@ app.post("/guardar", upload.fields([
 
     // Insertar en Supabase
     const sql = `
-      INSERT INTO "Suppliers" (
-        "NOMBRE", "TELEFONO", "CORREO", "RAZON SOCIAL", "CUIT", "DIRECCION FISCAL", "ACTIVIDAD PRINCIPAL",
-        "CONSTANCIA DE INSCRIPCION_URL", "IIBB_URL", "CM05_URL","BANCO","CBU","CUENTA", "MONEDA","COMPROBANTE CBU_URL","CODIGO DE CONDUCTA"
-      )
-      VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16)
-      RETURNING id
-    `;
+    INSERT INTO "Suppliers" (
+      "NOMBRE", "TELEFONO", "CORREO", "RAZON SOCIAL", "CUIT", "DIRECCION FISCAL", "ACTIVIDAD PRINCIPAL",
+      "CONSTANCIA DE INSCRIPCION_URL", "IIBB_URL", "CM05_URL", "COMPROBANTE CBU_URL",
+      "BANCO", "CBU", "CUENTA", "MONEDA", "CODIGO DE CONDUCTA"
+    )
+    VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16)
+    RETURNING id
+  `;
 
     const values = [
-      data.name, data.phone, data.email, data.razon_social, data.cuit, data.direccion_fiscal,
-      data.actividad, afipUrl, iibbUrl, cm05Url, data.banco, data.cbu, data.cuenta, data.moneda,
-      comprobanteUrl, data.codigo
-    ];
+        data.name, data.phone, data.email, data.razon_social, data.cuit, data.direccion_fiscal,
+        data.actividad, afipUrl, iibbUrl, cm05Url, comprobanteUrl,
+        data.banco, data.cbu, data.cuenta, data.moneda, data.codigo
+      ];
 
     const result = await db.query(sql, values);
     res.status(201).json({ message: "Formulario guardado", id: result.rows[0].id });
