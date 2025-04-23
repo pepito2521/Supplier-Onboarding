@@ -200,6 +200,7 @@ transition: all 0.5s ;
   z-index: 3;
 }
 
+
 @keyframes bounce {
   0%, 100% { transform: translateX(-50%) translateY(0); }
   50% { transform: translateX(-50%) translateY(10px); }
@@ -264,4 +265,81 @@ html {
   .logo-navbar {
       max-height: 30px;
     }
+}
+
+/* MULTI-STEP PROGRESS BARM */
+.progressbar {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  margin-bottom: 30px;
+  counter-reset: step;
+}
+
+.progress-step {
+  width: 100%;
+  text-align: center;
+  position: relative;
+  counter-increment: step;
+}
+
+.progress-step::before {
+  content: counter(step);
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  border: 2px solid #007BFF;
+  display: inline-block;
+  border-radius: 50%;
+  background-color: white;
+  color: #007BFF;
+  font-weight: bold;
+}
+
+.progress-step::after {
+  content: attr(data-title);
+  display: block;
+  margin-top: 8px;
+  font-size: 0.75rem;
+  color: #6c757d;
+}
+
+.progress-step::before,
+.progress-step::after {
+  transition: all 0.3s ease-in-out;
+}
+
+.progress-step-active::before {
+  background-color: #007BFF;
+  color: white;
+}
+
+.progress-step:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: 15px;
+  right: -50%;
+  width: 100%;
+  height: 2px;
+  background-color: #ccc;
+  z-index: -1;
+}
+
+.progress-step-active + .progress-step::after {
+  background-color: #007BFF;
+}
+
+/* Ocultar pasos */
+.form-step {
+  display: none;
+}
+
+.form-step-active {
+  display: block;
+}
+
+.btns-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
 }
