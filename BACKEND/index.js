@@ -53,9 +53,9 @@ app.post("/guardar", upload.fields([
     const sql = `
       INSERT INTO "Suppliers" (
         "NOMBRE", "TELEFONO", "CORREO", "RAZON SOCIAL", "CUIT", "DIRECCION FISCAL", "ACTIVIDAD PRINCIPAL",
-        "CONSTANCIA DE INSCRIPCION_URL", "IIBB_URL", "CM05_URL", "COMPROBANTE CBU_URL", "CBU", "CUENTA", "MONEDA", "CODIGO DE CONDUCTA"
+        "CONSTANCIA DE INSCRIPCION_URL", "IIBB_URL", "CM05_URL","BANCO","CBU","CUENTA", "MONEDA","COMPROBANTE CBU_URL","CODIGO DE CONDUCTA"
       )
-      VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15)
+      VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16)
       RETURNING id
     `;
 
