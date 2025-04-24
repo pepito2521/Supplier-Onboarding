@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     console.log("JavaScript cargado correctamente!");
 
-    const formulario = document.querySelector("form");
+    const formulario = document.querySelector("#multiStepForm");
     const totalSteps = 4;
     let currentStep = 1;
 
@@ -80,12 +80,4 @@ document.addEventListener("DOMContentLoaded", () => {
             navEl.classList.add("bg-transparent");
         }
     });
-
-    // Botón volver al inicio
-    const btnVolver = document.getElementById("btnVolver");
-    if (btnVolver) {
-        btnVolver.addEventListener("click", () => {
-            window.location.href = "index.html";
-        });
-    }
 });
