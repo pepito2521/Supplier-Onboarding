@@ -37,110 +37,112 @@
 
 
   <!-- SECCION: MULTI-STEP FORM -->
-<section id="Completarform" class="py-5">
-  <div class="form-container">
-    <h2 class="text-center mb-4">Formulario de Proveedores</h2>
-
-    <!-- Barra de progreso -->
-    <div class="progressbar">
-      <div class="progress-step progress-step-active" data-title="Contacto"></div>
-      <div class="progress-step" data-title="Fiscales"></div>
-      <div class="progress-step" data-title="Bancarios"></div>
-      <div class="progress-step" data-title="Conducta"></div>
+  <section id="Completarform" class="py-5">
+    <div class="form-container">
+      <h2 class="text-center mb-4">Formulario de Proveedores</h2>
+  
+      <!-- Barra de progreso -->
+      <div class="progressbar">
+        <div class="progress-step progress-step-active" data-title="Contacto"></div>
+        <div class="progress-step" data-title="Fiscales"></div>
+        <div class="progress-step" data-title="Bancarios"></div>
+        <div class="progress-step" data-title="Conducta"></div>
+      </div>
+  
+      <form id="multiStepForm" class="multistep-form" enctype="multipart/form-data">
+  
+        <!-- Step 1: Datos de contacto -->
+        <div class="form-step form-step-active">
+          <label for="name">Nombre:</label>
+          <input type="text" id="name" name="name" required>
+  
+          <label for="phone">Teléfono:</label>
+          <input type="tel" id="phone" name="phone" required>
+  
+          <label for="email">Correo Electrónico:</label>
+          <input type="email" id="email" name="email" required>
+  
+          <div class="btns-group">
+            <button type="button" class="btn btn-next">Siguiente</button>
+          </div>
+        </div>
+  
+        <!-- Step 2: Datos fiscales -->
+        <div class="form-step">
+          <label for="razon_social">Razón Social:</label>
+          <input type="text" id="razon_social" name="razon_social" required>
+  
+          <label for="cuit">CUIT:</label>
+          <input type="text" id="cuit" name="cuit" required>
+  
+          <label for="direccion_fiscal">Dirección Fiscal:</label>
+          <input type="text" id="direccion_fiscal" name="direccion_fiscal" required>
+  
+          <label for="actividad">Actividad Principal:</label>
+          <input type="text" id="actividad" name="actividad" required>
+  
+          <label for="afip">Constancia AFIP:</label>
+          <input type="file" id="afip" name="afip" required>
+  
+          <label for="iibb">IIBB:</label>
+          <input type="file" id="iibb" name="iibb" required>
+  
+          <label for="cm05">CM05:</label>
+          <input type="file" id="cm05" name="cm05" required>
+  
+          <div class="btns-group">
+            <button type="button" class="btn btn-prev">Anterior</button>
+            <button type="button" class="btn btn-next">Siguiente</button>
+          </div>
+        </div>
+  
+        <!-- Step 3: Datos bancarios -->
+        <div class="form-step">
+          <label for="banco">Banco:</label>
+          <input type="text" id="banco" name="banco" required>
+  
+          <label for="cbu">CBU:</label>
+          <input type="text" id="cbu" name="cbu" required>
+  
+          <label for="cuenta">Cuenta:</label>
+          <select id="cuenta" name="cuenta" required>
+            <option value="CC">Cuenta Corriente</option>
+            <option value="CA">Caja de Ahorro</option>
+          </select>
+  
+          <label for="moneda">Moneda:</label>
+          <select id="moneda" name="moneda" required>
+            <option value="ARS">Pesos (ARS)</option>
+            <option value="USD">Dólares (USD)</option>
+          </select>
+  
+          <label for="comprobante">Comprobante CBU:</label>
+          <input type="file" id="comprobante" name="comprobante" required>
+  
+          <div class="btns-group">
+            <button type="button" class="btn btn-prev">Anterior</button>
+            <button type="button" class="btn btn-next">Siguiente</button>
+          </div>
+        </div>
+  
+        <!-- Step 4: Código de Conducta -->
+        <div class="form-step">
+          <label for="codigo">¿Acepta el Código de Conducta?</label>
+          <select id="codigo" name="codigo" required>
+            <option value="Sí">Sí</option>
+            <option value="No">No</option>
+          </select>
+  
+          <div class="btns-group">
+            <button type="button" class="btn btn-prev">Anterior</button>
+            <button type="submit" class="btn">Enviar</button>
+          </div>
+        </div>
+      </form>
     </div>
+  </section>
 
-    <form id="multiStepForm" enctype="multipart/form-data">
 
-      <!-- Step 1: Datos de contacto -->
-      <div class="form-step form-step-active">
-        <label for="name">Nombre:</label>
-        <input type="text" id="name" name="name" required>
-
-        <label for="phone">Teléfono:</label>
-        <input type="tel" id="phone" name="phone" required>
-
-        <label for="email">Correo Electrónico:</label>
-        <input type="email" id="email" name="email" required>
-
-        <div class="btns-group">
-          <button type="button" class="btn btn-next">Siguiente</button>
-        </div>
-      </div>
-
-      <!-- Step 2: Datos fiscales -->
-      <div class="form-step">
-        <label for="razon_social">Razón Social:</label>
-        <input type="text" id="razon_social" name="razon_social" required>
-
-        <label for="cuit">CUIT:</label>
-        <input type="text" id="cuit" name="cuit" required>
-
-        <label for="direccion_fiscal">Dirección Fiscal:</label>
-        <input type="text" id="direccion_fiscal" name="direccion_fiscal" required>
-
-        <label for="actividad">Actividad Principal:</label>
-        <input type="text" id="actividad" name="actividad" required>
-
-        <label for="afip">Constancia AFIP:</label>
-        <input type="file" id="afip" name="afip" required>
-
-        <label for="iibb">IIBB:</label>
-        <input type="file" id="iibb" name="iibb" required>
-
-        <label for="cm05">CM05:</label>
-        <input type="file" id="cm05" name="cm05" required>
-
-        <div class="btns-group">
-          <button type="button" class="btn btn-prev">Anterior</button>
-          <button type="button" class="btn btn-next">Siguiente</button>
-        </div>
-      </div>
-
-      <!-- Step 3: Datos bancarios -->
-      <div class="form-step">
-        <label for="banco">Banco:</label>
-        <input type="text" id="banco" name="banco" required>
-
-        <label for="cbu">CBU:</label>
-        <input type="text" id="cbu" name="cbu" required>
-
-        <label for="cuenta">Cuenta:</label>
-        <select id="cuenta" name="cuenta" required>
-          <option value="CC">Cuenta Corriente</option>
-          <option value="CA">Caja de Ahorro</option>
-        </select>
-
-        <label for="moneda">Moneda:</label>
-        <select id="moneda" name="moneda" required>
-          <option value="ARS">Pesos (ARS)</option>
-          <option value="USD">Dólares (USD)</option>
-        </select>
-
-        <label for="comprobante">Comprobante CBU:</label>
-        <input type="file" id="comprobante" name="comprobante" required>
-
-        <div class="btns-group">
-          <button type="button" class="btn btn-prev">Anterior</button>
-          <button type="button" class="btn btn-next">Siguiente</button>
-        </div>
-      </div>
-
-      <!-- Step 4: Código de Conducta -->
-      <div class="form-step">
-        <label for="codigo">¿Acepta el Código de Conducta?</label>
-        <select id="codigo" name="codigo" required>
-          <option value="Sí">Sí</option>
-          <option value="No">No</option>
-        </select>
-
-        <div class="btns-group">
-          <button type="button" class="btn btn-prev">Anterior</button>
-          <button type="submit" class="btn">Enviar</button>
-        </div>
-      </div>
-    </form>
-  </div>
-</section>
 
 
   <!-- FOOTER -->
