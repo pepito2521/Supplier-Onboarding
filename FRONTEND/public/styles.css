@@ -318,17 +318,17 @@ html {
   position: relative;
   margin: 40px 0;
   counter-reset: step;
-  padding: 0 20px;
 }
 
 .progress-line {
   position: absolute;
   top: 15px;
-  left: 16px; /* Ajuste el inicio */
+  left: 100px;
+  right: 100px;
   height: 4px;
   background-color: #28a745;
   z-index: 1;
-  width: 0%; /* El ancho de la línea es dinámico */
+  width: 0%;
   transition: width 0.3s ease-in-out;
 }
 
@@ -336,8 +336,8 @@ html {
   content: "";
   position: absolute;
   top: 15px;
-  left: 16px; /* Alineación con los círculos */
-  right: 16px; /* Ajuste el final */
+  left: 100px;
+  right: 100px;
   height: 4px;
   background-color: #e0e0e0;
   z-index: 0;
