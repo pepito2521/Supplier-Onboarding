@@ -97,8 +97,8 @@ body {
   color: #5a5a5c;  /* Color de texto claro */
   margin-bottom: 20px; /* Espaciado entre párrafos */
   text-align: left; /* Alineación estándar para mayor claridad */
-  margin-left: 50px;   /* Margen a la izquierda */
-  margin-right: 50px;  /* Margen a la derecha */
+  margin-left: 5px;   /* Margen a la izquierda */
+  margin-right: 5px;  /* Margen a la derecha */
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 }
 
