@@ -21,7 +21,7 @@ body {
   background: white;
   padding: 20px;
   width: 95%;
-  max-width: 600px;
+  max-width: 50%;
   margin: 50px auto;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
@@ -294,10 +294,6 @@ html {
 }
 
 
-
-
-/* MULTI-STEP PROGRESS BAR */
-
 /* MULTI-STEP PROGRESS BAR */
 .progressbar {
   display: flex;
@@ -306,6 +302,7 @@ html {
   position: relative;
   margin: 40px 0;
   counter-reset: step;
+  padding: 0 20px;
 }
 
 .progress-line {
@@ -337,6 +334,8 @@ html {
   flex: 1;
   z-index: 1;
 }
+
+
 
 .progress-step::before {
   content: counter(step);
@@ -410,6 +409,9 @@ html {
   display: flex;
   flex-direction: column;
   gap: 20px;
+  width: 100%;              /* que use todo el ancho disponible */
+  max-width: 100%;          /* evita que se limite por errores de tamaño */
+  align-self: stretch;      /* por si está dentro de un contenedor flex */
 }
 
 .multistep-form input,
@@ -420,6 +422,8 @@ html {
   border-radius: 5px;
   border: 1px solid #ced4da;
   transition: border-color 0.3s, box-shadow 0.3s;
+  width: 100%;              /* ✅ hace que ocupen todo el ancho disponible */
+  box-sizing: border-box;   /* ✅ evita que el padding rompa el layout */
 }
 
 .multistep-form input:focus,
@@ -428,6 +432,8 @@ html {
   border-color: #007BFF;
   box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
   outline: none;
+  width: 100%;              /* se ajustan al ancho del contenedor */
+  box-sizing: border-box;
 }
 
 .multistep-form .form-group {
