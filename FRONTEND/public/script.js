@@ -15,16 +15,20 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Actualizar barra de progreso
-    function updateProgressBar(step) {
+
+    function updateProgressBar(currentStep) {
         const steps = document.querySelectorAll(".progress-step");
-        steps.forEach((stepEl, index) => {
-            if (index < step) {
-                stepEl.classList.add("progress-step-active");
-            } else {
-                stepEl.classList.remove("progress-step-active");
+        steps.forEach((step, index) => {
+            step.classList.remove("progress-step-active", "completed");
+    
+            if (index < currentStep - 1) {
+                step.classList.add("completed");
+            } else if (index === currentStep - 1) {
+                step.classList.add("progress-step-active");
             }
         });
     }
+    
 
     // Navegación siguiente
     document.querySelectorAll(".btn-next").forEach(btn => {

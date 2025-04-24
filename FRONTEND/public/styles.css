@@ -297,81 +297,98 @@ html {
 
 
 /* MULTI-STEP PROGRESS BAR */
+
 .progressbar {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   position: relative;
-  margin-bottom: 30px;
+  margin: 40px 0;
   counter-reset: step;
 }
 
-.progress-step {
+.progressbar::before {
+  content: "";
+  position: absolute;
+  top: 15px;
+  left: 0;
   width: 100%;
-  text-align: center;
-  position: relative;
+  height: 4px;
+  background-color: #e0e0e0;
+  z-index: 0;
+}
+
+.progress-step {
   counter-increment: step;
+  position: relative;
+  text-align: center;
+  flex: 1;
+  z-index: 1;
 }
 
 .progress-step::before {
   content: counter(step);
-  width: 30px;
-  height: 30px;
-  line-height: 30px;
-  border: 2px solid #007BFF;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
   display: inline-block;
+  border: 2px solid #007BFF;
   border-radius: 50%;
-  background-color: white;
+  background-color: #fff;
   color: #007BFF;
   font-weight: bold;
+  transition: all 0.3s ease-in-out;
+  z-index: 1;
 }
 
 .progress-step::after {
   content: attr(data-title);
   display: block;
-  margin-top: 8px;
-  font-size: 0.75rem;
+  margin-top: 10px;
+  font-size: 0.8rem;
   color: #6c757d;
+  position: relative;
 }
 
-.progress-step::before,
-.progress-step::after {
-  transition: all 0.3s ease-in-out;
-}
-
-.progress-step-active::before {
+.progress-step-active::before,
+.progress-step.completed::before {
   background-color: #007BFF;
   color: white;
+  border-color: #007BFF;
 }
 
-.progress-step:not(:last-child)::after {
-  content: "";
-  position: absolute;
-  top: 15px;
-  right: -50%;
-  width: 100%;
-  height: 2px;
-  background-color: #ccc;
-  z-index: -1;
+.progress-step.completed::before {
+  content: "✓";
 }
 
-.progress-step-active + .progress-step::after {
-  background-color: #007BFF;
+/* Línea de progreso rellena */
+.progressbar .progress-step.completed::after {
+  font-weight: bold;
+  color: #007BFF;
 }
 
-/* Ocultar pasos */
-.form-step {
-  display: none;
+.progressbar .progress-step::after {
+  transition: color 0.3s ease-in-out;
 }
 
-.form-step-active {
-  display: block;
+/* Responsivo */
+@media (max-width: 600px) {
+  .progressbar {
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 20px 0;
+  }
+
+  .progress-step {
+    margin-bottom: 20px;
+    width: 100%;
+  }
+
+  .progressbar::before {
+    display: none;
+  }
 }
 
-.btns-group {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
-}
 
 
 
