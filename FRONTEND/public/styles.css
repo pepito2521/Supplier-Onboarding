@@ -307,6 +307,18 @@ html {
   counter-reset: step;
 }
 
+/* Línea verde que se rellena con el progreso */
+.progress-line {
+  position: absolute;
+  top: 15px;
+  left: 0;
+  height: 4px;
+  background-color: #28a745; /* verde */
+  z-index: 1;
+  width: 0%;
+  transition: width 0.3s ease-in-out;
+}
+
 .progressbar::before {
   content: "";
   position: absolute;
@@ -332,10 +344,10 @@ html {
   height: 32px;
   line-height: 32px;
   display: inline-block;
-  border: 2px solid #007BFF;
+  border: 2px solid #ced4da;
   border-radius: 50%;
   background-color: #fff;
-  color: #007BFF;
+  color: #ced4da;
   font-weight: bold;
   transition: all 0.3s ease-in-out;
   z-index: 1;
@@ -352,9 +364,9 @@ html {
 
 .progress-step-active::before,
 .progress-step.completed::before {
-  background-color: #007BFF;
+  background-color: #28a745;
   color: white;
-  border-color: #007BFF;
+  border-color: #28a745;
 }
 
 .progress-step.completed::before {
@@ -364,7 +376,7 @@ html {
 /* Línea de progreso rellena */
 .progressbar .progress-step.completed::after {
   font-weight: bold;
-  color: #007BFF;
+  color: #28a745;
 }
 
 .progressbar .progress-step::after {
