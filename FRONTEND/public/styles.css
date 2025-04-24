@@ -298,6 +298,7 @@ html {
 
 /* MULTI-STEP PROGRESS BAR */
 
+/* MULTI-STEP PROGRESS BAR */
 .progressbar {
   display: flex;
   justify-content: space-between;
@@ -307,15 +308,14 @@ html {
   counter-reset: step;
 }
 
-/* Línea verde que se rellena con el progreso */
 .progress-line {
   position: absolute;
   top: 15px;
-  left: 0;
+  left: 16px; /* Ajuste el inicio */
   height: 4px;
-  background-color: #28a745; /* verde */
+  background-color: #28a745;
   z-index: 1;
-  width: 0%;
+  width: 0%; /* El ancho de la línea es dinámico */
   transition: width 0.3s ease-in-out;
 }
 
@@ -323,8 +323,8 @@ html {
   content: "";
   position: absolute;
   top: 15px;
-  left: 0;
-  width: 100%;
+  left: 16px; /* Alineación con los círculos */
+  right: 16px; /* Ajuste el final */
   height: 4px;
   background-color: #e0e0e0;
   z-index: 0;
@@ -346,8 +346,8 @@ html {
   display: inline-block;
   border: 2px solid #ced4da;
   border-radius: 50%;
-  background-color: #fff;
-  color: #ced4da;
+  background-color: #ced4da;
+  color: white;
   font-weight: bold;
   transition: all 0.3s ease-in-out;
   z-index: 1;
@@ -400,6 +400,7 @@ html {
     display: none;
   }
 }
+
 
 
 

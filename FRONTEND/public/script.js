@@ -15,28 +15,28 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Actualizar barra de progreso
+function updateProgressBar(currentStep) {
+    const steps = document.querySelectorAll(".progress-step");
+    const line = document.querySelector(".progress-line");
 
-    function updateProgressBar(currentStep) {
-        const steps = document.querySelectorAll(".progress-step");
-        const line = document.querySelector(".progress-line");
-    
-        steps.forEach((step, index) => {
-            step.classList.remove("progress-step-active", "completed");
-    
-            if (index < currentStep - 1) {
-                step.classList.add("completed");
-            } else if (index === currentStep - 1) {
-                step.classList.add("progress-step-active");
-            }
-        });
-    
-        // Actualizar el ancho de la línea verde
-        if (line) {
-            const percent = ((currentStep - 1) / (steps.length - 1)) * 100;
-            line.style.width = `${percent}%`;
+    // Actualizar los pasos (círculos)
+    steps.forEach((step, index) => {
+        step.classList.remove("progress-step-active", "completed");
+
+        if (index < currentStep - 1) {
+            step.classList.add("completed");
+        } else if (index === currentStep - 1) {
+            step.classList.add("progress-step-active");
         }
+    });
+
+    // Actualizar el ancho de la línea verde
+    if (line) {
+        const percent = ((currentStep - 1) / (steps.length - 1)) * 100;
+        line.style.width = `${percent}%`;
     }
-    
+}
+
     
 
     // Navegación siguiente
