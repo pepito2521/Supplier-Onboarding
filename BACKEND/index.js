@@ -82,16 +82,8 @@ app.post("/guardar", upload.fields([
         <p>Hola <strong>${data.name}</strong>,</p>
         <p>Gracias por completar el formulario para registrarte como proveedor. Pronto nos pondremos en contacto contigo.</p>
         <p>Saludos,<br>Equipo de Administración</p>
-        <img src="cid:logofooter" style="width:150px; margin-top:20px;" />
-      `,
-      attachments: [
-        {
-            filename: 'logo.png',
-            content: fs.readFileSync(path.join(__dirname, '..', 'FRONTEND', 'public', 'logo.png')),
-            cid: 'logofooter',
-            contentType: 'image/png'
-        }
-      ]
+        <img src="https://vasvpsjslvjbfnyjjufx.supabase.co/storage/v1/object/public/conducta//logo.png" style="width:150px; margin-top:20px;" />
+      `
     });
     res.status(201).json({ message: "Formulario guardado y email enviado", id: result.rows[0].id });
 
