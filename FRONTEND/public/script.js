@@ -14,32 +14,36 @@ document.addEventListener("DOMContentLoaded", () => {
         updateProgressBar(step);
     }
 
-    // Actualizar barra de progreso
-function updateProgressBar(currentStep) {
-    const steps = document.querySelectorAll(".progress-step");
-    const line = document.querySelector(".progress-line");
+    // ACTUALIZAR BARRA DE PROGRESO
 
-    // Actualizar los pasos (círculos)
-    steps.forEach((step, index) => {
-        step.classList.remove("progress-step-active", "completed");
-
-        if (index < currentStep - 1) {
-            step.classList.add("completed");
-        } else if (index === currentStep - 1) {
-            step.classList.add("progress-step-active");
+    function updateProgressBar(currentStep) {
+        const steps = document.querySelectorAll(".progress-step");
+        const line = document.querySelector(".progress-line");
+        const progressBar = document.querySelector(".progressbar");
+    
+        steps.forEach((step, index) => {
+            step.classList.remove("progress-step-active", "completed");
+    
+            if (index < currentStep - 1) {
+                step.classList.add("completed");
+            } else if (index === currentStep - 1) {
+                step.classList.add("progress-step-active");
+            }
+        });
+    
+        if (line && progressBar) {
+            const totalSteps = steps.length;
+            const distanceBetweenSteps = steps[1].offsetLeft - steps[0].offsetLeft;
+    
+            const newWidth = distanceBetweenSteps * (currentStep - 1);
+            line.style.width = `${newWidth}px`;
         }
-    });
-
-    // Actualizar el ancho de la línea verde
-    if (line) {
-        const percent = ((currentStep - 1) / (steps.length - 1)) * 100;
-        line.style.width = `${percent}%`;
     }
-}
+    
 
     
 
-    // Navegación siguiente
+    // NAVEGACION SIGUIENTE
     document.querySelectorAll(".btn-next").forEach(btn => {
         btn.addEventListener("click", () => {
             if (currentStep < totalSteps) {
@@ -49,7 +53,7 @@ function updateProgressBar(currentStep) {
         });
     });
 
-    // Navegación anterior
+    // NAVEGACION ANTEIOR
     document.querySelectorAll(".btn-prev").forEach(btn => {
         btn.addEventListener("click", () => {
             if (currentStep > 1) {
@@ -59,10 +63,10 @@ function updateProgressBar(currentStep) {
         });
     });
 
-    // Mostrar el primer paso
+    // MOSTRAR EL PRIMER PASO
     showStep(currentStep);
 
-    // Envío del formulario
+    // ENVIO DEL FORMULARIO AL BACKEND
     formulario.addEventListener("submit", (event) => {
         event.preventDefault();
 
@@ -84,7 +88,7 @@ function updateProgressBar(currentStep) {
         });
     });
 
-    // Transparencia de la navbar al hacer scroll
+    // TRANSPARENT NAVBAR AL HACER SCROLL
     const navEl = document.querySelector(".navbar");
     window.addEventListener("scroll", () => {
         if (window.scrollY >= 100) {
