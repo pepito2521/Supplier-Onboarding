@@ -5,7 +5,7 @@ const path = require("path");
 const db = require("./db");
 const supabase = require("./supabase");
 require("dotenv").config();
-const sendEmail = require("./emailer");
+const sendEmail = require("./helpers/mailer");
 
 const app = express();
 const PORT = process.env.PORT || 5000;
