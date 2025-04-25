@@ -5,6 +5,7 @@ const path = require("path");
 const db = require("./db");
 const supabase = require("./supabase");
 require("dotenv").config();
+const sendEmail = require("./emailer");
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -67,7 +68,19 @@ app.post("/guardar", upload.fields([
       ];
 
     const result = await db.query(sql, values);
-    res.status(201).json({ message: "Formulario guardado", id: result.rows[0].id });
+
+    // 👇 Enviar correo al email del usuario
+    await sendEmail({
+      to: data.email,
+      subject: "Gracias por registrarte como proveedor",
+      text: `Hola ${data.name}, gracias por completar el formulario.`,
+      html: `
+        <p>Hola <strong>${data.name}</strong>,</p>
+        <p>Gracias por completar el formulario para registrarte como proveedor. Pronto nos pondremos en contacto contigo.</p>
+        <p>Saludos,<br>Equipo de Administración</p>
+      `
+    });
+    res.status(201).json({ message: "Formulario guardado y email enviado", id: result.rows[0].id });
 
   } catch (error) {
     console.error("Error en /guardar:", error);
