@@ -6,6 +6,7 @@ const db = require("./db");
 const supabase = require("./supabase");
 require("dotenv").config();
 const sendEmail = require("./helpers/mailer");
+const fs = require("fs");
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -85,9 +86,9 @@ app.post("/guardar", upload.fields([
       `,
       attachments: [
         {
-          filename: 'logo.png',
-          path: path.join(__dirname, '..', 'FRONTEND', 'public', 'logo.png'),
-          cid: 'logofooter' // este CID debe coincidir con el de la etiqueta <img>
+            filename: 'logo.png',
+            content: fs.readFileSync(path.join(__dirname, '..', 'FRONTEND', 'public', 'logo.png')),
+            cid: 'logofooter'
         }
       ]
     });
