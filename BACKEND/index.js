@@ -69,7 +69,10 @@ app.post("/guardar", upload.fields([
 
     const result = await db.query(sql, values);
 
-    // 👇 Enviar correo al email del usuario
+
+
+    // CORREO DE CONFIRMACION AL USUARIO
+    
     await sendEmail({
       to: data.email,
       subject: "Gracias por registrarte como proveedor",
@@ -78,7 +81,15 @@ app.post("/guardar", upload.fields([
         <p>Hola <strong>${data.name}</strong>,</p>
         <p>Gracias por completar el formulario para registrarte como proveedor. Pronto nos pondremos en contacto contigo.</p>
         <p>Saludos,<br>Equipo de Administración</p>
-      `
+        <img src="cid:logofooter" style="width:150px; margin-top:20px;" />
+      `,
+      attachments: [
+        {
+          filename: 'logo.png',
+          path: './FRONTEND/public/logo.png',
+          cid: 'logofooter' // este CID debe coincidir con el de la etiqueta <img>
+        }
+      ]
     });
     res.status(201).json({ message: "Formulario guardado y email enviado", id: result.rows[0].id });
 
