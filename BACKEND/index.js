@@ -86,7 +86,7 @@ app.post("/guardar", upload.fields([
       attachments: [
         {
           filename: 'logo.png',
-          path: './FRONTEND/public/logo.png',
+          path: path.join(__dirname, '..', 'FRONTEND', 'public', 'logo.png'),
           cid: 'logofooter' // este CID debe coincidir con el de la etiqueta <img>
         }
       ]
