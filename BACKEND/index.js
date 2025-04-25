@@ -88,7 +88,8 @@ app.post("/guardar", upload.fields([
         {
             filename: 'logo.png',
             content: fs.readFileSync(path.join(__dirname, '..', 'FRONTEND', 'public', 'logo.png')),
-            cid: 'logofooter'
+            cid: 'logofooter',
+            contentType: 'image/png'
         }
       ]
     });
