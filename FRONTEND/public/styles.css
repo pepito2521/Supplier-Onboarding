@@ -55,6 +55,10 @@ body {
   background-color: #5a6268;
 }
 
+input.error, select.error {
+  border: 2px solid red !important;
+}
+
 
 
 /* TEXTOS */
